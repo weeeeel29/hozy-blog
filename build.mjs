@@ -311,7 +311,7 @@ function head (cfg, { title, description, canonical, depth, game, ogType }) {
 function navBlock (cfg, depth, currentId) {
   const base = depth ? '../' : ''
   const items = [
-    `<a href="${base}"${currentId === '__home__' ? ' aria-current="page"' : ''}>首頁</a>`,
+    `<a href="${base || './'}"${currentId === '__home__' ? ' aria-current="page"' : ''}>首頁</a>`,
     ...cfg.games.map(g =>
       `<a href="${base}${escAttr(g.id)}/" data-game="${escAttr(g.id)}"${
         currentId === g.id ? ' aria-current="page"' : ''
