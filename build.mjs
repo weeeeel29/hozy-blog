@@ -303,7 +303,6 @@ function head (cfg, { title, description, canonical, depth, game, ogType }) {
 }
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="${base}assets/styles.css">${gameStyles(cfg)}
-<script src="${base}assets/config.js"></script>
 <script src="${base}assets/counter.js" defer></script>`
 }
 
@@ -352,6 +351,7 @@ function footerBlock (cfg, depth, games) {
   return `<footer class="site-footer">
     ${games.map(creditLine).filter(Boolean).join('\n    ')}
     ${games.map(g => `<p class="disclaimer">${esc(g.disclaimer)}</p>`).join('\n    ')}
+    <p class="site-stats">本站總瀏覽 <span class="view-count">—</span> 次</p>
     <p class="copyright">© ${new Date().getFullYear()} ${esc(cfg.title)}　·　<a href="${base || './'}">回首頁</a></p>
   </footer>`
 }
@@ -390,7 +390,6 @@ function postCard (cfg, post, { depth, game }) {
             <span class="meta-item">✍️ ${esc(post.author || cfg.author)}</span>
             <span class="meta-item"><time datetime="${post.publishedYmd}">發布 ${post.publishedYmd}</time></span>
             <span class="meta-item"><time datetime="${post.updatedYmd}">更新 ${post.updatedYmd}</time></span>
-            <span class="meta-item views">👁 <span class="view-count" data-views="${escAttr(post.slug)}">—</span></span>
           </p>${
             post.tags.length
               ? `\n          <p class="tags">${post.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</p>`
@@ -414,7 +413,6 @@ function renderHome (cfg, posts, gameById) {
           <p class="card-summary">${esc(g.tagline)}</p>
           <p class="card-meta">
             <span class="meta-item">📝 ${n} 篇文章</span>
-            <span class="meta-item views">👁 <span class="view-count" data-views="${escAttr(g.id)}">—</span></span>
           </p>
         </article>
       </li>`
@@ -428,7 +426,6 @@ function renderHome (cfg, posts, gameById) {
   <div class="wrap">
     <h1 class="site-title">${esc(cfg.title)}</h1>
     <p class="site-tagline">${esc(cfg.tagline)}</p>
-    <p class="site-stats">本站總瀏覽 <span class="view-count" data-views="__home__" data-primary>—</span> 次</p>
   </div>
 </header>
 
@@ -497,7 +494,6 @@ ${navBlock(cfg, true, game.id)}
     <p class="site-tagline">${esc(game.tagline)}</p>
     <p class="card-meta">
       <span class="meta-item">📝 ${mine.length} 篇文章</span>
-      <span class="meta-item views">👁 <span class="view-count" data-views="${escAttr(game.id)}" data-primary>—</span> 次瀏覽</span>
     </p>
   </div>
 
@@ -550,7 +546,6 @@ ${navBlock(cfg, true, game.id)}
       <span class="meta-item">✍️ 作者：${esc(post.author || cfg.author)}</span>
       <span class="meta-item"><time datetime="${post.publishedYmd}">發布 ${post.publishedYmd}</time></span>
       <span class="meta-item"><time datetime="${post.updatedYmd}">最後更新 ${post.updatedYmd}</time></span>
-      <span class="meta-item views">👁 <span class="view-count" data-views="${escAttr(post.slug)}" data-primary>—</span> 次瀏覽</span>
     </p>${
       post.tags.length
         ? `\n\n    <p class="tags">${post.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</p>`
@@ -581,16 +576,6 @@ ${post.html}
 }
 
 // ---------------------------------------------------------------- 其他輸出
-
-function renderConfigJs (cfg, posts) {
-  return `// 建置時自動產生，請勿手改。
-window.SITE_CONFIG = ${JSON.stringify({
-    supabaseUrl: cfg.supabase.url || '',
-    supabaseAnonKey: cfg.supabase.anonKey || '',
-    slugs: ['__home__', ...cfg.games.map(g => g.id), ...posts.map(p => p.slug)]
-  }, null, 2)};
-`
-}
 
 function renderSitemap (cfg, posts) {
   const base = (cfg.baseUrl || '').replace(/\/$/, '')
@@ -694,9 +679,6 @@ async function main () {
     await writeFile(path.join(dir, 'index.html'), renderPost(cfg, post, gameById.get(post.gameId)))
   }
 
-  await mkdir(path.join(DIST, 'assets'), { recursive: true })
-  await writeFile(path.join(DIST, 'assets', 'config.js'), renderConfigJs(cfg, posts))
-
   const sitemap = renderSitemap(cfg, posts)
   if (sitemap) await writeFile(path.join(DIST, 'sitemap.xml'), sitemap)
 
@@ -713,7 +695,7 @@ async function main () {
     console.log(`  /${g.id}/  ${g.title}（${mine.length} 篇）`)
     for (const p of mine) console.log(`    · /${p.slug}/  更新 ${p.updatedYmd}  ${p.title}`)
   }
-  if (!cfg.supabase.url) console.log('! Supabase 未設定，計數器會顯示「—」（網站其他功能不受影響）')
+  console.log('  計數器：全站單一計數，由 functions/api/views.js + D1 提供')
 }
 
 main().catch(err => {

@@ -92,23 +92,36 @@ dist/                  建置產物（已 gitignore）
 /sitemap.xml           有填 baseUrl 時才產生
 ```
 
-## Supabase 計數器
+## 瀏覽計數器
 
-在 `site.config.json` 填入：
+全站**單一**計數器：不分文章、不分遊戲，任何一頁被看都算進同一個總數，顯示在每頁頁尾。
 
-```json
-"supabase": {
-  "url": "https://xxxxx.supabase.co",
-  "anonKey": "eyJhbGci..."
-}
+用 Cloudflare 自己的東西做，沒有外部服務也沒有金鑰：
+
+| 元件 | 位置 |
+| --- | --- |
+| API | [`functions/api/views.js`](functions/api/views.js)（Pages Function） |
+| 資料庫 | D1 `hozy-blog-views`，綁定名稱 `DB`，設定在 [`wrangler.jsonc`](wrangler.jsonc) |
+| 前端 | [`static/assets/counter.js`](static/assets/counter.js) |
+| 建表 SQL | [`d1/schema.sql`](d1/schema.sql) |
+
+端點：
+
+```
+POST /api/views   加一，回傳新總數
+GET  /api/views   只讀
 ```
 
-資料庫需要一張表和一個函式，SQL 見 [`supabase/schema.sql`](supabase/schema.sql)。
+加一用 `UPDATE ... RETURNING` 一次完成，不是先讀再寫，所以並發請求不會互相蓋掉。
+同一個瀏覽階段只會 POST 一次（記在 `sessionStorage`），之後在站內點來點去都走 GET。
 
-計數的 slug 除了每篇文章，還包含 `__home__`（全站）與每個遊戲 id（各遊戲專頁）。
-每頁帶 `data-primary` 的那顆計數器負責 +1，其餘卡片上的數字一次撈回來填。
+重建資料表：
 
-未設定時計數器會顯示「—」，網站其餘功能不受影響。
+```bash
+wrangler d1 execute hozy-blog-views --remote --file d1/schema.sql
+```
+
+API 掛掉時計數器會停在「—」，頁面其餘部分不受影響。
 
 ## 圖片與版權
 

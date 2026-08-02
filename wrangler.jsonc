@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hozy-blog",
+  "compatibility_date": "2026-08-02",
+
+  // 建置產物目錄。Pages Functions 從專案根目錄的 functions/ 讀取，不放這裡面。
+  "pages_build_output_dir": "dist",
+
+  // 全站瀏覽計數器用的資料庫。Function 裡以 env.DB 取用。
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hozy-blog-views",
+      "database_id": "7f0ee938-74a7-4d24-9220-dce893b9c2e9"
+    }
+  ]
+}
