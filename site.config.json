@@ -1,0 +1,24 @@
+{
+  "title": "Hozy 手記",
+  "tagline": "一間一間房間，把小鎮慢慢修回來",
+  "description": "關於《Hozy》這款療癒系房屋整修遊戲的中文部落格：攻略、心得、場景筆記與設計觀察。",
+  "lang": "zh-Hant",
+  "author": "Will",
+  "baseUrl": "",
+  "hero": {
+    "file": "assets/hero-cozy-apartment.jpg",
+    "alt": "灑進陽光的溫馨公寓客廳，木質家具與大片窗景",
+    "credit": {
+      "title": "Modern living room with stylish furniture and a view of the outdoors in a cozy apartment setting",
+      "author": "Shixart1985",
+      "authorUrl": "https://commons.wikimedia.org/wiki/User:Shixart1985",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Modern_living_room_with_stylish_furniture_and_a_view_of_the_outdoors_in_a_cozy_apartment_setting.jpg",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+    }
+  },
+  "supabase": {
+    "url": "",
+    "anonKey": ""
+  }
+}

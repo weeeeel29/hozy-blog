@@ -1,0 +1,339 @@
+/* Hozy 手記 —— 配色走遊戲本身的調性：暖木頭、亞麻、午後陽光，不用電競暗色高對比 */
+
+:root {
+  --bg: #fbf7f1;
+  --surface: #ffffff;
+  --surface-alt: #f4ece1;
+  --text: #2f2823;
+  --text-soft: #6b5d51;
+  --text-faint: #8d7f72;
+  --accent: #b56b3f;
+  --accent-soft: #e8d5c2;
+  --border: #e4d8c9;
+  --shadow: 0 1px 2px rgba(66, 48, 33, .05), 0 8px 24px rgba(66, 48, 33, .06);
+
+  --wrap: 44rem;          /* 內容文字區寬度 —— HERO 圖不會超過這個寬度 */
+  --radius: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1815;
+    --surface: #26211d;
+    --surface-alt: #2f2823;
+    --text: #ede4d8;
+    --text-soft: #bcaa98;
+    --text-faint: #9a8877;
+    --accent: #e09a6a;
+    --accent-soft: #4a3a2c;
+    --border: #3b322b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;   /* iOS 橫置時不要自己放大字 */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", -apple-system,
+               BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  letter-spacing: .01em;
+  overflow-wrap: break-word;        /* 長網址、長英文字不撐破版面 */
+  word-break: break-word;
+}
+
+/* 內容容器 —— 手機用 padding 留白，桌機置中 */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 5vw, 1.75rem);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: #fff;
+  padding: .6rem 1rem;
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 10;
+}
+.skip-link:focus { left: 0; }
+
+a { color: var(--accent); text-underline-offset: .18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------ 頁首 */
+
+.site-header {
+  background: linear-gradient(180deg, var(--surface-alt), var(--bg));
+  border-bottom: 1px solid var(--border);
+  padding-block: clamp(2rem, 8vw, 3.5rem) clamp(1.5rem, 6vw, 2.5rem);
+  text-align: center;
+}
+
+.site-header.compact {
+  padding-block: 1rem;
+  text-align: left;
+  background: var(--surface-alt);
+}
+
+.site-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 7vw, 2.6rem);
+  line-height: 1.25;
+  letter-spacing: .02em;
+}
+
+.site-tagline {
+  margin: .5rem 0 0;
+  color: var(--text-soft);
+  font-size: clamp(.95rem, 3.6vw, 1.08rem);
+}
+
+.site-stats {
+  margin: .9rem 0 0;
+  font-size: .85rem;
+  color: var(--text-faint);
+}
+
+.breadcrumb { margin: 0; font-size: .9rem; }
+
+/* ------------------------------------------------------------ HERO */
+
+/* 等比例縮放，寬度不超過內容文字區（.wrap 已限制 max-width） */
+.hero {
+  margin: clamp(1.5rem, 6vw, 2.5rem) 0;
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;              /* 等比例，不變形 */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--surface-alt);
+}
+
+/* ------------------------------------------------------------ 區塊標題 */
+
+main h2 {
+  font-size: clamp(1.2rem, 4.8vw, 1.5rem);
+  margin: 2.5rem 0 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--accent-soft);
+  line-height: 1.4;
+}
+
+main h2 .count {
+  font-size: .8rem;
+  font-weight: 400;
+  color: var(--text-faint);
+}
+
+.intro p { color: var(--text-soft); }
+
+/* ------------------------------------------------------------ 卡片索引 */
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 4.5vw, 1.4rem);
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+@media (hover: hover) {
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+}
+
+.card h3 {
+  margin: 0 0 .5rem;
+  font-size: clamp(1.05rem, 4.2vw, 1.22rem);
+  line-height: 1.45;
+}
+
+.card h3 a { text-decoration: none; color: inherit; }
+.card h3 a:hover { color: var(--accent); }
+
+.card-summary {
+  margin: 0 0 .85rem;
+  color: var(--text-soft);
+  font-size: .95rem;
+  line-height: 1.7;
+}
+
+/* meta 用 flex-wrap，窄螢幕自己折行，不會撐破卡片 */
+.card-meta, .post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .9rem;
+  margin: 0;
+  font-size: .8rem;
+  color: var(--text-faint);
+}
+
+.post-meta {
+  margin: .75rem 0 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .85rem;
+}
+
+.meta-item { white-space: nowrap; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .8rem 0 0;
+}
+
+.tag {
+  background: var(--accent-soft);
+  color: var(--text-soft);
+  font-size: .74rem;
+  padding: .16rem .6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.empty { color: var(--text-faint); }
+
+/* ------------------------------------------------------------ 文章內文 */
+
+.post h1 {
+  font-size: clamp(1.5rem, 6.2vw, 2.15rem);
+  line-height: 1.35;
+  margin: clamp(1.5rem, 6vw, 2.5rem) 0 0;
+}
+
+.post-body h2 { border-bottom: 2px solid var(--accent-soft); }
+
+.post-body h3 {
+  font-size: clamp(1.05rem, 4.2vw, 1.22rem);
+  margin: 2rem 0 .6rem;
+  line-height: 1.5;
+}
+
+.post-body p { margin: 1.15rem 0; }
+
+.post-body ul, .post-body ol { padding-left: 1.4rem; margin: 1.15rem 0; }
+.post-body li { margin: .45rem 0; }
+
+.post-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;      /* 不超過內容區寬度 */
+  height: auto;         /* 等比例 */
+  margin: 1.5rem auto;
+  border-radius: var(--radius);
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: .3rem 0 .3rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  color: var(--text-soft);
+  background: var(--surface-alt);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+blockquote p { margin: .6rem 0; }
+
+hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+
+code {
+  background: var(--surface-alt);
+  padding: .12em .4em;
+  border-radius: 5px;
+  font-size: .88em;
+  font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+}
+
+pre {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  overflow-x: auto;          /* 程式碼自己捲，不撐破頁面 */
+  -webkit-overflow-scrolling: touch;
+}
+
+pre code { background: none; padding: 0; font-size: .84rem; line-height: 1.7; }
+
+/* 表格包一層可捲動容器，窄螢幕不會把版面推寬 */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { padding: .6rem .85rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--surface-alt); font-weight: 600; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+
+.post-nav { margin: 2.5rem 0 0; font-size: .92rem; }
+
+/* ------------------------------------------------------------ 頁尾 */
+
+.site-footer {
+  margin-top: 3.5rem;
+  padding: 1.5rem 0 3rem;
+  border-top: 1px solid var(--border);
+  font-size: .8rem;
+  line-height: 1.75;
+  color: var(--text-faint);
+}
+
+.site-footer p { margin: .6rem 0; }
+.site-footer a { color: var(--text-soft); }
+
+.credit {
+  background: var(--surface-alt);
+  padding: .85rem 1rem;
+  border-radius: var(--radius);
+}
+
+.copyright { padding-top: .5rem; }
+
+/* ------------------------------------------------------------ 計數器 */
+
+.view-count { font-variant-numeric: tabular-nums; }
+
+.view-count.is-loading { opacity: .5; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}

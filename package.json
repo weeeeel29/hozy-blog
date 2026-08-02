@@ -1,0 +1,15 @@
+{
+  "name": "hozy-blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hozy 手記 —— 關於遊戲《Hozy》的中文部落格（靜態網站，零執行期相依）",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && wrangler pages dev dist --port 8788",
+    "new": "node new-post.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
