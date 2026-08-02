@@ -613,6 +613,45 @@ ${urls.join('\n')}
 `
 }
 
+/**
+ * 404 頁。
+ *
+ * 沒有這個檔案時，Cloudflare Pages 會把找不到的路徑 fallback 成首頁並回 200，
+ * Google 會判定為 soft 404。有了它才會回真正的 404 狀態碼。
+ */
+function render404 (cfg) {
+  const body = `${navBlock(cfg, false, null)}
+
+<main id="main" class="wrap">
+  <section class="intro">
+    <h1>找不到這個頁面</h1>
+    <p>網址可能打錯了，或這篇文章已經搬家、下架。</p>
+    <p><a href="./">回首頁看看有什麼</a></p>
+  </section>
+
+  <section class="post-list">
+    <h2>目前的分區</h2>
+    <ul class="cards">
+${cfg.games.map(g => `      <li>
+        <article class="card">
+          <h3><a href="${escAttr(g.id)}/">${esc(g.emoji || '')} ${esc(g.title)}</a></h3>
+          <p class="card-summary">${esc(g.tagline)}</p>
+        </article>
+      </li>`).join('\n')}
+    </ul>
+  </section>
+
+  ${footerBlock(cfg, false, cfg.games)}
+</main>`
+
+  return page(cfg, {
+    title: `找不到頁面｜${cfg.title}`,
+    description: '這個網址沒有對應的頁面。',
+    depth: false,
+    body
+  })
+}
+
 // ---------------------------------------------------------------- main
 
 async function main () {
@@ -660,6 +699,8 @@ async function main () {
 
   const sitemap = renderSitemap(cfg, posts)
   if (sitemap) await writeFile(path.join(DIST, 'sitemap.xml'), sitemap)
+
+  await writeFile(path.join(DIST, '404.html'), render404(cfg))
 
   await writeFile(
     path.join(DIST, 'robots.txt'),
