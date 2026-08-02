@@ -1,4 +1,6 @@
-/* Hozy 手記 —— 配色走遊戲本身的調性：暖木頭、亞麻、午後陽光，不用電競暗色高對比 */
+/* 整理手記 —— 底色走「亞麻紙 + 暖木頭」的調性，不用電競暗色高對比。
+   每款遊戲的主色（--accent / --accent-soft）由建置腳本依 data-game 覆蓋，
+   所以同一份樣式表可以同時服務不同遊戲的頁面。 */
 
 :root {
   --bg: #fbf7f1;
@@ -116,6 +118,57 @@ a:hover { text-decoration-thickness: 2px; }
 
 .breadcrumb { margin: 0; font-size: .9rem; }
 
+/* ------------------------------------------------------------ 導覽列 */
+
+/* 黏在頂端，捲到哪一頁都能直接換遊戲；窄螢幕就橫向捲 */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-nav .wrap {
+  display: flex;
+  gap: .3rem;
+  padding-block: .55rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.site-nav .wrap::-webkit-scrollbar { display: none; }
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: .35rem .8rem;
+  border-radius: 999px;
+  font-size: .92rem;
+  color: var(--text-soft);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* 每個遊戲項目前面一顆自己的主色圓點，當作視覺索引 */
+.site-nav a[data-game]::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  margin-right: .45rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.site-nav a:hover { background: var(--surface-alt); color: var(--text); }
+
+.site-nav a[aria-current="page"] {
+  background: var(--accent-soft);
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* ------------------------------------------------------------ HERO */
 
 /* 等比例縮放，寬度不超過內容文字區（.wrap 已限制 max-width） */
@@ -226,6 +279,73 @@ main h2 .count {
 }
 
 .empty { color: var(--text-faint); }
+
+/* 混合列表（首頁）裡，用左側色條分辨這篇屬於哪款遊戲 */
+.cards .card[data-game] { border-left: 3px solid var(--accent); }
+
+.card-game { margin: 0 0 .6rem; font-size: .78rem; }
+
+.card-game a {
+  display: inline-block;
+  padding: .16rem .7rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text-soft);
+  text-decoration: none;
+}
+
+.card-game a:hover { color: var(--text); }
+
+/* ------------------------------------------------------------ 遊戲索引 */
+
+.game-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.game-card {
+  padding: 0;
+  overflow: hidden;
+  border-top: 4px solid var(--accent);
+}
+
+.game-thumb {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--surface-alt);
+}
+
+.game-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-card h3 { margin: 1rem 1.1rem .45rem; }
+.game-card .card-summary { margin: 0 1.1rem .8rem; }
+.game-card .card-meta { margin: 0 1.1rem 1.2rem; }
+
+/* ------------------------------------------------------------ 遊戲專頁抬頭 */
+
+.game-head { margin: clamp(1.5rem, 6vw, 2.5rem) 0 0; }
+
+.game-head h1 {
+  margin: 0 0 .4rem;
+  font-size: clamp(1.55rem, 6.4vw, 2.3rem);
+  line-height: 1.3;
+}
+
+.game-head .site-tagline { margin: 0 0 .7rem; }
+
+/* 基本資料表：左欄是標籤，固定窄一點免得換行 */
+.facts th { width: 7em; }
+
+.store-link { margin: 1.3rem 0 0; font-weight: 600; }
 
 /* ------------------------------------------------------------ 文章內文 */
 

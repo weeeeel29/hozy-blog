@@ -1,15 +1,15 @@
 // 瀏覽計數器 —— 直接打 Supabase REST API，不載入 SDK（省一個外部相依）。
 //
 // 運作方式：
-//   文章頁 → 對自己的 slug +1，然後顯示數字
-//   首頁   → 對 __home__ +1，再一次撈回全部數字填進每張卡片
+//   每頁有一顆「主要計數器」（帶 data-primary），對它的 slug +1
+//   頁面上若還有其他計數器（首頁卡片、遊戲頁的文章卡片），一次撈回全部數字填進去
 //
 // 沒設定 Supabase 時整段安靜跳過，頁面其他部分照常運作（數字維持「—」）。
 
 (function () {
   'use strict'
 
-  var cfg = window.HOZY_CONFIG || {}
+  var cfg = window.SITE_CONFIG || {}
   var BASE = (cfg.supabaseUrl || '').replace(/\/$/, '')
   var KEY = cfg.supabaseAnonKey || ''
 
@@ -39,15 +39,15 @@
     }
   }
 
-  // 首頁會有 __home__ 這顆；文章頁只有自己那一顆
-  var homeNode = document.querySelector('.view-count[data-views="__home__"]')
-  var isHome = !!homeNode
-  var currentSlug = isHome ? '__home__' : nodes[0].getAttribute('data-views')
+  // 主要計數器：首頁是 __home__、遊戲頁是遊戲 id、文章頁是文章 slug
+  var primaryNode = document.querySelector('.view-count[data-primary][data-views]')
+  var primarySlug = (primaryNode || nodes[0]).getAttribute('data-views')
+  var hasOthers = nodes.length > 1
 
   for (var i = 0; i < nodes.length; i++) nodes[i].classList.add('is-loading')
 
   // 同一個瀏覽階段重整不重複計數
-  var seenKey = 'hozy:seen:' + currentSlug
+  var seenKey = 'tidy:seen:' + primarySlug
   var alreadySeen = false
   try {
     alreadySeen = sessionStorage.getItem(seenKey) === '1'
@@ -88,41 +88,38 @@
     try { sessionStorage.setItem(seenKey, '1') } catch (e) { /* 忽略 */ }
   }
 
-  var fail = function (err) {
-    console.warn('[counter]', err && err.message ? err.message : err)
-    for (var i = 0; i < nodes.length; i++) nodes[i].classList.remove('is-loading')
+  var clearLoading = function () {
+    var remaining = document.querySelectorAll('.view-count.is-loading')
+    for (var i = 0; i < remaining.length; i++) remaining[i].classList.remove('is-loading')
   }
 
-  if (isHome) {
-    var step = alreadySeen ? readOne('__home__') : incr('__home__').then(function (v) {
-      markSeen()
-      return v
+  var step = alreadySeen ? readOne(primarySlug) : incr(primarySlug).then(function (v) {
+    markSeen()
+    return v
+  })
+
+  step
+    .then(function (v) { paint(primarySlug, v) })
+    .catch(function (e) {
+      console.warn('[counter] ' + primarySlug, e && e.message ? e.message : e)
+      clearLoading()
     })
 
-    step
-      .then(function (v) { paint('__home__', v) })
-      .catch(function (e) { console.warn('[counter] home', e.message) })
-
-    // 卡片上的數字：一次撈回全部，逐一填入
+  // 卡片上的數字：一次撈回全部，逐一填入
+  if (hasOthers) {
     readAll()
       .then(function (rows) {
         for (var i = 0; i < rows.length; i++) paint(rows[i].slug, rows[i].views)
-        // 資料庫裡還沒有紀錄的文章顯示 0，不要一直卡在「—」
+        // 資料庫裡還沒有紀錄的顯示 0，不要一直卡在「—」
         var remaining = document.querySelectorAll('.view-count.is-loading')
         for (var j = 0; j < remaining.length; j++) {
           remaining[j].textContent = '0'
           remaining[j].classList.remove('is-loading')
         }
       })
-      .catch(fail)
-  } else {
-    var run = alreadySeen ? readOne(currentSlug) : incr(currentSlug).then(function (v) {
-      markSeen()
-      return v
-    })
-
-    run
-      .then(function (v) { paint(currentSlug, v) })
-      .catch(fail)
+      .catch(function (e) {
+        console.warn('[counter] all', e && e.message ? e.message : e)
+        clearLoading()
+      })
   }
 })()

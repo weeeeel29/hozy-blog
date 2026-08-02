@@ -2,7 +2,7 @@
   "name": "hozy-blog",
   "version": "1.0.0",
   "private": true,
-  "description": "Hozy 手記 —— 關於遊戲《Hozy》的中文部落格（靜態網站，零執行期相依）",
+  "description": "整理手記 —— 寫「整理系」遊戲的中文部落格，目前收錄《Hozy》與《Librarian》（靜態網站，零執行期相依）",
   "type": "module",
   "scripts": {
     "build": "node build.mjs",

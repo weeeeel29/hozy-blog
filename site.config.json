@@ -1,22 +1,83 @@
 {
-  "title": "Hozy 手記",
-  "tagline": "一間一間房間，把小鎮慢慢修回來",
-  "description": "關於《Hozy》這款療癒系房屋整修遊戲的中文部落格：攻略、心得、場景筆記與設計觀察。",
+  "title": "整理手記",
+  "tagline": "把亂掉的世界，一格一格收回原位",
+  "description": "一個專寫「整理系」遊戲的中文部落格。目前收錄《Hozy》與《Librarian: Tidy Up the Arcane Library!》：玩法拆解、攻略心得、場景筆記與設計觀察。",
   "lang": "zh-Hant",
   "author": "Will",
   "baseUrl": "",
-  "hero": {
-    "file": "assets/hero-cozy-apartment.jpg",
-    "alt": "灑進陽光的溫馨公寓客廳，木質家具與大片窗景",
-    "credit": {
-      "title": "Modern living room with stylish furniture and a view of the outdoors in a cozy apartment setting",
-      "author": "Shixart1985",
-      "authorUrl": "https://commons.wikimedia.org/wiki/User:Shixart1985",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Modern_living_room_with_stylish_furniture_and_a_view_of_the_outdoors_in_a_cozy_apartment_setting.jpg",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  "defaultGame": "hozy",
+  "games": [
+    {
+      "id": "hozy",
+      "name": "Hozy",
+      "emoji": "🏡",
+      "title": "Hozy 手記",
+      "tagline": "一間一間房間，把小鎮慢慢修回來",
+      "description": "關於《Hozy》這款療癒系房屋整修遊戲的中文筆記：玩法、攻略、場景佈置與設計觀察。",
+      "storeUrl": "",
+      "accent": {
+        "light": "#b56b3f",
+        "lightSoft": "#e8d5c2",
+        "dark": "#e09a6a",
+        "darkSoft": "#4a3a2c"
+      },
+      "hero": {
+        "file": "assets/hero-cozy-apartment.jpg",
+        "alt": "灑進陽光的溫馨公寓客廳，木質家具與大片窗景",
+        "width": 1920,
+        "height": 1281,
+        "credit": {
+          "title": "Modern living room with stylish furniture and a view of the outdoors in a cozy apartment setting",
+          "author": "Shixart1985",
+          "authorUrl": "https://commons.wikimedia.org/wiki/User:Shixart1985",
+          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Modern_living_room_with_stylish_furniture_and_a_view_of_the_outdoors_in_a_cozy_apartment_setting.jpg",
+          "license": "CC BY 2.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+          "source": "Wikimedia Commons"
+        }
+      },
+      "facts": [
+        { "label": "開發商", "value": "Come On Studio" },
+        { "label": "發行商", "value": "tinyBuild" },
+        { "label": "發行日期", "value": "2026 年 3 月 30 日" },
+        { "label": "售價", "value": "NT$249" },
+        { "label": "類型", "value": "整修模擬、沙盒、解謎" },
+        { "label": "遊玩人數", "value": "單人" }
+      ],
+      "disclaimer": "本站為《Hozy》非官方粉絲部落格。遊戲《Hozy》由 Come On Studio 開發、tinyBuild 發行，相關名稱與圖像之權利均屬原權利人所有。"
+    },
+    {
+      "id": "librarian",
+      "name": "Librarian",
+      "emoji": "📚",
+      "title": "書庫整理員手記",
+      "tagline": "3,072 本書，全部歸位",
+      "description": "關於《Librarian: Tidy Up the Arcane Library!》的中文筆記：分類邏輯、魔法技能取捨、館長評分機制與購買前該知道的事。",
+      "storeUrl": "https://store.steampowered.com/app/4197610/",
+      "accent": {
+        "light": "#6b53b8",
+        "lightSoft": "#ded6f2",
+        "dark": "#a891e8",
+        "darkSoft": "#332a4d"
+      },
+      "hero": {
+        "file": "assets/hero-arcane-library.svg",
+        "alt": "夜色中的魔法圖書館：高聳書架、拱形窗與月光，幾本書漂浮在空中發著微光，地上散落成堆的書",
+        "width": 1920,
+        "height": 1080,
+        "note": "HERO 圖片：本站自製向量插畫（示意用，非遊戲畫面）。"
+      },
+      "facts": [
+        { "label": "開發／發行", "value": "ArtRising" },
+        { "label": "發行日期", "value": "2026 年 4 月 30 日" },
+        { "label": "售價", "value": "NT$136" },
+        { "label": "類型", "value": "第一人稱整理模擬、解謎、尋物" },
+        { "label": "評價", "value": "極度好評（14,131 篇評論中 93% 好評）" },
+        { "label": "中文", "value": "繁體中文介面、字幕與語音" }
+      ],
+      "disclaimer": "本站為《Librarian: Tidy Up the Arcane Library!》非官方粉絲部落格。該遊戲由 ArtRising 開發與發行，相關名稱與圖像之權利均屬原權利人所有。"
     }
-  },
+  ],
   "supabase": {
     "url": "",
     "anonKey": ""

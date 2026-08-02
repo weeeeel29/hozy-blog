@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" role="img" aria-label="夜色中的魔法圖書館：高聳書架、拱形窗與月光，幾本書漂浮在空中發著微光，地上散落成堆的書">
+  <title>魔法圖書館的夜晚</title>
+
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#120d26"/>
+      <stop offset=".55" stop-color="#241a45"/>
+      <stop offset="1" stop-color="#181130"/>
+    </linearGradient>
+
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f5fa8"/>
+      <stop offset=".6" stop-color="#2b3f7d"/>
+      <stop offset="1" stop-color="#1d2a58"/>
+    </linearGradient>
+
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a3524"/>
+      <stop offset="1" stop-color="#2c1f16"/>
+    </linearGradient>
+
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#241a3a"/>
+      <stop offset="1" stop-color="#100b20"/>
+    </linearGradient>
+
+    <radialGradient id="moonGlow">
+      <stop offset="0" stop-color="#eef3ff" stop-opacity=".85"/>
+      <stop offset=".45" stop-color="#9fb6f0" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#9fb6f0" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="lampGlow">
+      <stop offset="0" stop-color="#ffd9a0" stop-opacity=".85"/>
+      <stop offset=".4" stop-color="#e8a860" stop-opacity=".3"/>
+      <stop offset="1" stop-color="#e8a860" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="vignette">
+      <stop offset=".45" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".55"/>
+    </radialGradient>
+
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+
+    <filter id="softer" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+    <!-- 一排書：書背站在 y=0 的基準線上，整排寬 524 -->
+    <g id="books">
+      <rect x="0"   y="-118" width="20" height="118" fill="#c2683f"/>
+      <rect x="22"  y="-132" width="16" height="132" fill="#d9a45b"/>
+      <rect x="40"  y="-105" width="24" height="105" fill="#6f9b86"/>
+      <rect x="66"  y="-140" width="14" height="140" fill="#4f74a8"/>
+      <rect x="82"  y="-112" width="22" height="112" fill="#8f63a8"/>
+      <rect x="106" y="-126" width="18" height="126" fill="#b04a4a"/>
+      <rect x="126" y="-98"  width="26" height="98"  fill="#cbb387"/>
+      <rect x="154" y="-134" width="16" height="134" fill="#43706c"/>
+      <rect x="172" y="-120" width="20" height="120" fill="#c2683f"/>
+      <rect x="194" y="-108" width="14" height="108" fill="#d9a45b"/>
+      <rect x="210" y="-130" width="28" height="130" fill="#6f9b86"/>
+      <rect x="240" y="-116" width="18" height="116" fill="#4f74a8"/>
+      <rect x="260" y="-102" width="22" height="102" fill="#8f63a8"/>
+      <rect x="284" y="-138" width="16" height="138" fill="#b04a4a"/>
+      <rect x="302" y="-110" width="24" height="110" fill="#cbb387"/>
+      <rect x="328" y="-124" width="20" height="124" fill="#43706c"/>
+      <rect x="350" y="-136" width="14" height="136" fill="#c2683f"/>
+      <rect x="366" y="-106" width="26" height="106" fill="#d9a45b"/>
+      <rect x="394" y="-128" width="18" height="128" fill="#6f9b86"/>
+      <rect x="414" y="-114" width="22" height="114" fill="#4f74a8"/>
+      <rect x="438" y="-132" width="16" height="132" fill="#8f63a8"/>
+      <rect x="456" y="-100" width="20" height="100" fill="#b04a4a"/>
+      <rect x="478" y="-122" width="24" height="122" fill="#cbb387"/>
+      <rect x="504" y="-118" width="18" height="118" fill="#43706c"/>
+    </g>
+
+    <!-- 一疊倒在地上的書（左下角為原點） -->
+    <g id="stack">
+      <rect x="-46" y="-16" width="92" height="16" rx="2" fill="#4f74a8"/>
+      <rect x="-40" y="-30" width="80" height="14" rx="2" fill="#c2683f"/>
+      <rect x="-44" y="-42" width="86" height="12" rx="2" fill="#cbb387"/>
+      <rect x="-34" y="-56" width="70" height="14" rx="2" fill="#6f9b86"/>
+      <rect x="-38" y="-68" width="74" height="12" rx="2" fill="#8f63a8"/>
+    </g>
+
+    <!-- 漂浮中的攤開書本 -->
+    <g id="flyBook">
+      <path d="M0 6 L-42 -8 L-42 14 L0 28 Z" fill="#efe6cf"/>
+      <path d="M0 6 L42 -8 L42 14 L0 28 Z" fill="#d8cbaa"/>
+      <path d="M0 6 L-42 -8 L-42 -2 L0 12 Z" fill="#fff9e8" opacity=".75"/>
+      <rect x="-3" y="6" width="6" height="22" fill="#8f63a8"/>
+    </g>
+  </defs>
+
+  <!-- 牆面 -->
+  <rect width="1920" height="1080" fill="url(#wall)"/>
+
+  <!-- 拱窗與月光 -->
+  <g>
+    <circle cx="960" cy="330" r="330" fill="url(#moonGlow)"/>
+    <path d="M770 640 L770 300 A190 190 0 0 1 1150 300 L1150 640 Z" fill="url(#glass)"/>
+    <circle cx="900" cy="285" r="58" fill="#f2f5ff" opacity=".92"/>
+    <circle cx="920" cy="270" r="48" fill="#2b3f7d" opacity=".55"/>
+    <g stroke="#100b20" stroke-width="12" fill="none" opacity=".9">
+      <path d="M770 640 L770 300 A190 190 0 0 1 1150 300 L1150 640 Z"/>
+      <path d="M960 130 L960 640"/>
+      <path d="M775 400 L1145 400"/>
+      <path d="M770 510 L1150 510"/>
+    </g>
+    <!-- 月光斜射進來 -->
+    <g fill="#cddcff" opacity=".07">
+      <path d="M790 640 L1130 640 L1500 1080 L980 1080 Z"/>
+      <path d="M900 640 L1000 640 L1230 1080 L1050 1080 Z"/>
+    </g>
+  </g>
+
+  <!-- 地板 -->
+  <rect y="880" width="1920" height="200" fill="url(#floor)"/>
+  <path d="M0 880 H1920" stroke="#3a2b55" stroke-width="3"/>
+
+  <!-- 左側書櫃 -->
+  <g>
+    <rect x="60" y="120" width="640" height="780" fill="url(#wood)"/>
+    <rect x="60" y="120" width="640" height="780" fill="none" stroke="#5c422d" stroke-width="8"/>
+    <rect x="88" y="148" width="584" height="724" fill="#0f0a1c" opacity=".55"/>
+    <g fill="#5c422d">
+      <rect x="88" y="310" width="584" height="14"/>
+      <rect x="88" y="495" width="584" height="14"/>
+      <rect x="88" y="680" width="584" height="14"/>
+      <rect x="88" y="860" width="584" height="14"/>
+    </g>
+    <g transform="translate(96 310) scale(1.107 1)"><use href="#books"/></g>
+    <g transform="translate(96 495) scale(1.107 .92)"><use href="#books"/></g>
+    <g transform="translate(96 680) scale(1.107 1.04)"><use href="#books" opacity=".92"/></g>
+    <!-- 最下層只剩零星幾本，其他都散在地上了 -->
+    <g fill="#2a1e14">
+      <rect x="96" y="740" width="230" height="120" opacity=".0"/>
+    </g>
+    <g transform="translate(96 860)">
+      <rect x="0" y="-112" width="20" height="112" fill="#c2683f"/>
+      <rect x="22" y="-128" width="16" height="128" fill="#4f74a8"/>
+      <rect x="42" y="-104" width="24" height="104" fill="#cbb387"/>
+      <g transform="translate(84 0) rotate(14)"><rect x="0" y="-120" width="18" height="120" fill="#6f9b86"/></g>
+      <rect x="430" y="-118" width="22" height="118" fill="#8f63a8"/>
+      <rect x="456" y="-134" width="16" height="134" fill="#b04a4a"/>
+      <rect x="476" y="-108" width="26" height="108" fill="#d9a45b"/>
+    </g>
+  </g>
+
+  <!-- 右側書櫃 -->
+  <g>
+    <rect x="1220" y="120" width="640" height="780" fill="url(#wood)"/>
+    <rect x="1220" y="120" width="640" height="780" fill="none" stroke="#5c422d" stroke-width="8"/>
+    <rect x="1248" y="148" width="584" height="724" fill="#0f0a1c" opacity=".55"/>
+    <g fill="#5c422d">
+      <rect x="1248" y="310" width="584" height="14"/>
+      <rect x="1248" y="495" width="584" height="14"/>
+      <rect x="1248" y="680" width="584" height="14"/>
+      <rect x="1248" y="860" width="584" height="14"/>
+    </g>
+    <g transform="translate(1256 310) scale(1.107 .96)"><use href="#books"/></g>
+    <g transform="translate(1256 495) scale(1.107 1.06)"><use href="#books"/></g>
+    <g transform="translate(1256 680) scale(1.107 .9)"><use href="#books" opacity=".92"/></g>
+    <g transform="translate(1256 860) scale(1.107 1)"><use href="#books" opacity=".85"/></g>
+  </g>
+
+  <!-- 中央閱讀桌與檯燈光暈 -->
+  <g>
+    <ellipse cx="960" cy="800" rx="300" ry="150" fill="url(#lampGlow)"/>
+    <rect x="800" y="800" width="320" height="16" rx="4" fill="#5c422d"/>
+    <rect x="822" y="816" width="18" height="84" fill="#402d1e"/>
+    <rect x="1080" y="816" width="18" height="84" fill="#402d1e"/>
+    <g transform="translate(960 762)">
+      <circle cx="0" cy="14" r="70" fill="#ffd9a0" opacity=".35" filter="url(#soft)"/>
+      <use href="#flyBook"/>
+    </g>
+    <!-- 桌邊的燭火 -->
+    <g transform="translate(1064 760)">
+      <rect x="-7" y="0" width="14" height="40" fill="#e8dfc8"/>
+      <ellipse cx="0" cy="-8" rx="7" ry="14" fill="#ffcf7a"/>
+      <circle cx="0" cy="-6" r="26" fill="#ffcf7a" opacity=".35" filter="url(#soft)"/>
+    </g>
+  </g>
+
+  <!-- 地上散落的書堆 -->
+  <g>
+    <use href="#stack" transform="translate(280 900)"/>
+    <use href="#stack" transform="translate(430 900) scale(.8)"/>
+    <use href="#stack" transform="translate(690 906) scale(.9)"/>
+    <use href="#stack" transform="translate(1290 902) scale(.85)"/>
+    <use href="#stack" transform="translate(1520 900)"/>
+    <g fill="#cbb387" opacity=".9">
+      <rect x="560" y="946" width="86" height="14" rx="2" transform="rotate(-8 603 953)"/>
+      <rect x="1130" y="960" width="78" height="13" rx="2" transform="rotate(6 1169 966)"/>
+      <rect x="820" y="988" width="92" height="14" rx="2" transform="rotate(-4 866 995)" fill="#6f9b86"/>
+      <rect x="1360" y="990" width="84" height="13" rx="2" transform="rotate(9 1402 996)" fill="#4f74a8"/>
+    </g>
+  </g>
+
+  <!-- 漂浮回架上的書 -->
+  <g>
+    <path d="M960 740 C 1080 640, 1200 520, 1320 430" stroke="#a891e8" stroke-width="3" fill="none" opacity=".28" stroke-dasharray="10 16"/>
+    <path d="M960 740 C 840 650, 720 540, 600 460" stroke="#a891e8" stroke-width="3" fill="none" opacity=".22" stroke-dasharray="10 16"/>
+
+    <g transform="translate(1080 640) rotate(-16) scale(.9)">
+      <circle cx="0" cy="10" r="52" fill="#a891e8" opacity=".28" filter="url(#soft)"/>
+      <use href="#flyBook"/>
+    </g>
+    <g transform="translate(1216 520) rotate(-26) scale(.78)">
+      <circle cx="0" cy="10" r="52" fill="#a891e8" opacity=".26" filter="url(#soft)"/>
+      <use href="#flyBook"/>
+    </g>
+    <g transform="translate(1318 432) rotate(-34) scale(.66)">
+      <circle cx="0" cy="10" r="52" fill="#a891e8" opacity=".22" filter="url(#soft)"/>
+      <use href="#flyBook"/>
+    </g>
+    <g transform="translate(742 604) rotate(18) scale(.84)">
+      <circle cx="0" cy="10" r="52" fill="#a891e8" opacity=".26" filter="url(#soft)"/>
+      <use href="#flyBook"/>
+    </g>
+    <g transform="translate(624 486) rotate(28) scale(.68)">
+      <circle cx="0" cy="10" r="52" fill="#a891e8" opacity=".22" filter="url(#soft)"/>
+      <use href="#flyBook"/>
+    </g>
+  </g>
+
+  <!-- 空氣中的微光塵 -->
+  <g fill="#e7dcff">
+    <circle cx="520" cy="300" r="4" opacity=".5"/>
+    <circle cx="660" cy="220" r="3" opacity=".38"/>
+    <circle cx="1180" cy="268" r="4" opacity=".45"/>
+    <circle cx="1420" cy="360" r="3" opacity=".35"/>
+    <circle cx="880" cy="470" r="3" opacity=".4"/>
+    <circle cx="1024" cy="560" r="4" opacity=".5"/>
+    <circle cx="740" cy="360" r="3" opacity=".3"/>
+    <circle cx="1300" cy="640" r="4" opacity=".4"/>
+    <circle cx="480" cy="620" r="3" opacity=".32"/>
+    <circle cx="1560" cy="520" r="4" opacity=".36"/>
+    <circle cx="960" cy="180" r="3" opacity=".3"/>
+    <circle cx="1120" cy="700" r="3" opacity=".42"/>
+  </g>
+
+  <!-- 暗角 -->
+  <rect width="1920" height="1080" fill="url(#vignette)"/>
+</svg>
