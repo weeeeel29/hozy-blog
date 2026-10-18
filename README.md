@@ -53,7 +53,7 @@ npm run build
 }
 ```
 
-`hero` 若使用外部授權圖片，加上 `credit`（`title` / `author` / `authorUrl` / `sourceUrl` / `license` / `licenseUrl` / `source`），頁尾會自動列出完整出處；自製圖則用 `note` 寫一行說明。
+`hero.file` 可以是站內路徑或外部網址。目前各遊戲的封面都直接引用 Steam 商店的官方素材，`note` 寫一行版權歸屬，會顯示在頁尾。
 
 ## 設計上的幾個決定
 
@@ -78,8 +78,6 @@ posts/*.md             文章原始檔（frontmatter 的 game: 決定歸屬）
 static/                直接複製到 dist/ 的靜態檔
   assets/styles.css
   assets/counter.js
-  assets/hero-cozy-apartment.jpg     Hozy 頁的 HERO（CC BY 2.0）
-  assets/hero-arcane-library.svg     Librarian 頁的 HERO（本站自製）
 dist/                  建置產物（已 gitignore）
 ```
 
@@ -125,8 +123,8 @@ API 掛掉時計數器會停在「—」，頁面其餘部分不受影響。
 
 ## 圖片與版權
 
-- Hozy 頁的 HERO 為 CC BY 2.0 授權，作者 Shixart1985，來源 Wikimedia Commons，完整出處標示於頁尾。圖片未經修改，僅縮放尺寸。
-- Librarian 頁的 HERO 為本站自製 SVG 向量插畫，屬示意用途，不是遊戲畫面。
+各遊戲的封面圖直接引用 Steam 商店的官方素材（Steam CDN 網址），版權屬各遊戲的開發商／發行商。
+若 Steam 更換素材導致網址失效，到該遊戲的商店頁重新取得圖片網址，更新 `site.config.json` 即可。
 
 本站為非官方粉絲站。《Hozy》由 Come On Studio 開發、tinyBuild 發行；
 《Librarian: Tidy Up the Arcane Library!》由 ArtRising 開發與發行。

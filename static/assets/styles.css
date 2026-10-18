@@ -1,35 +1,39 @@
-/* 整理手記 —— 底色走「亞麻紙 + 暖木頭」的調性，不用電競暗色高對比。
+/* 整理手記 —— 走《Hozy》那種午後陽光照進整修好的房間的溫馨感：
+   奶油色的紙、暖木頭、柔和的圓角與陰影，不用電競暗色高對比。
    每款遊戲的主色（--accent / --accent-soft）由建置腳本依 data-game 覆蓋，
    所以同一份樣式表可以同時服務不同遊戲的頁面。 */
 
 :root {
-  --bg: #fbf7f1;
-  --surface: #ffffff;
-  --surface-alt: #f4ece1;
-  --text: #2f2823;
-  --text-soft: #6b5d51;
-  --text-faint: #8d7f72;
-  --accent: #b56b3f;
-  --accent-soft: #e8d5c2;
-  --border: #e4d8c9;
-  --shadow: 0 1px 2px rgba(66, 48, 33, .05), 0 8px 24px rgba(66, 48, 33, .06);
+  --bg: #f6eee2;
+  --surface: #fffaf3;
+  --surface-alt: #f0e4d2;
+  --text: #3a2e25;
+  --text-soft: #6e5b4b;
+  --text-faint: #95806d;
+  --accent: #b8693a;
+  --accent-soft: #f0dcc5;
+  --border: #e7d7c1;
+  --glow: rgba(255, 205, 140, .38);   /* 從窗戶斜照進來的那道暖光 */
+  --shadow: 0 2px 4px rgba(120, 80, 40, .05), 0 12px 30px rgba(120, 80, 40, .09);
 
   --wrap: 44rem;          /* 內容文字區寬度 —— HERO 圖不會超過這個寬度 */
-  --radius: 14px;
+  --radius: 18px;
 }
 
+/* 深色模式是「晚上開著一盞檯燈」，不是冷冰冰的黑 */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1c1815;
-    --surface: #26211d;
-    --surface-alt: #2f2823;
-    --text: #ede4d8;
-    --text-soft: #bcaa98;
-    --text-faint: #9a8877;
-    --accent: #e09a6a;
-    --accent-soft: #4a3a2c;
-    --border: #3b322b;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    --bg: #211913;
+    --surface: #2b221b;
+    --surface-alt: #352a21;
+    --text: #f1e6d8;
+    --text-soft: #c7b29c;
+    --text-faint: #a08b76;
+    --accent: #e7a06d;
+    --accent-soft: #4e3b2b;
+    --border: #41342a;
+    --glow: rgba(255, 170, 90, .14);
+    --shadow: 0 2px 4px rgba(0, 0, 0, .25), 0 12px 30px rgba(0, 0, 0, .3);
   }
 }
 
@@ -42,7 +46,13 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
+  /* 左上角一道暖光 + 極淡的布紋，讓底色不是死板的一片 */
+  background:
+    radial-gradient(1100px 620px at 12% -8%, var(--glow), transparent 62%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .33 0 0 0 0 .2 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--bg);
+  background-attachment: fixed, scroll, scroll;
   color: var(--text);
   font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", -apple-system,
                BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -452,6 +462,36 @@ tbody tr:last-child td { border-bottom: 0; }
 .view-count { font-variant-numeric: tabular-nums; }
 
 .view-count.is-loading { opacity: .5; }
+
+/* ------------------------------------------------------------ 溫馨感的小細節 */
+
+/* 頁首半透明，讓背景那道暖光透上來 */
+.site-header {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-alt) 70%, transparent), transparent);
+  border-bottom: 2px dashed var(--border);
+}
+
+.site-header.compact { background: color-mix(in srgb, var(--surface-alt) 75%, transparent); }
+
+/* 導覽列像一層薄紗窗簾 */
+.site-nav {
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* 區塊標題底下改成縫線，比實線柔軟 */
+main h2,
+.post-body h2 { border-bottom: 2px dashed var(--accent-soft); }
+
+/* 卡片浮起來時帶一圈暖光 */
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 60%, transparent), var(--shadow);
+  }
+}
+
+.site-footer { border-top: 2px dashed var(--border); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

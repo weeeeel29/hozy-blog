@@ -1,7 +1,7 @@
 {
   "title": "整理手記",
   "tagline": "把亂掉的世界，一格一格收回原位",
-  "description": "一個專寫「整理系」遊戲的中文部落格。目前收錄《Hozy》與《Librarian: Tidy Up the Arcane Library!》：玩法拆解、攻略心得、場景筆記與設計觀察。",
+  "description": "一個專寫「整理系」遊戲的中文部落格。目前收錄《Hozy》、《Librarian: Tidy Up the Arcane Library!》，以及站在整理遊戲反面的《Fire Pit》：玩法拆解、心得、場景筆記與設計觀察。",
   "lang": "zh-Hant",
   "author": "Will",
   "baseUrl": "",
@@ -22,27 +22,37 @@
         "darkSoft": "#4a3a2c"
       },
       "hero": {
-        "file": "assets/hero-cozy-apartment.jpg",
-        "alt": "灑進陽光的溫馨公寓客廳，木質家具與大片窗景",
+        "file": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3326230/library_hero.jpg",
+        "alt": "《Hozy》Steam 官方主視覺：陽光照進閣樓房間，黃色單人沙發、藍色沙發、橘色懶骨頭與滿室植物",
         "width": 1920,
-        "height": 1281,
-        "credit": {
-          "title": "Modern living room with stylish furniture and a view of the outdoors in a cozy apartment setting",
-          "author": "Shixart1985",
-          "authorUrl": "https://commons.wikimedia.org/wiki/User:Shixart1985",
-          "sourceUrl": "https://commons.wikimedia.org/wiki/File:Modern_living_room_with_stylish_furniture_and_a_view_of_the_outdoors_in_a_cozy_apartment_setting.jpg",
-          "license": "CC BY 2.0",
-          "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-          "source": "Wikimedia Commons"
-        }
+        "height": 620,
+        "note": "封面圖片：Steam 商店官方素材，版權屬 Come On Studio／tinyBuild 所有。"
       },
       "facts": [
-        { "label": "開發商", "value": "Come On Studio" },
-        { "label": "發行商", "value": "tinyBuild" },
-        { "label": "發行日期", "value": "2026 年 3 月 30 日" },
-        { "label": "售價", "value": "NT$249" },
-        { "label": "類型", "value": "整修模擬、沙盒、解謎" },
-        { "label": "遊玩人數", "value": "單人" }
+        {
+          "label": "開發商",
+          "value": "Come On Studio"
+        },
+        {
+          "label": "發行商",
+          "value": "tinyBuild"
+        },
+        {
+          "label": "發行日期",
+          "value": "2026 年 3 月 30 日"
+        },
+        {
+          "label": "售價",
+          "value": "NT$249"
+        },
+        {
+          "label": "類型",
+          "value": "整修模擬、沙盒、解謎"
+        },
+        {
+          "label": "遊玩人數",
+          "value": "單人"
+        }
       ],
       "disclaimer": "本站為《Hozy》非官方粉絲部落格。遊戲《Hozy》由 Come On Studio 開發、tinyBuild 發行，相關名稱與圖像之權利均屬原權利人所有。"
     },
@@ -61,21 +71,92 @@
         "darkSoft": "#332a4d"
       },
       "hero": {
-        "file": "assets/hero-arcane-library.svg",
-        "alt": "夜色中的魔法圖書館：高聳書架、拱形窗與月光，幾本書漂浮在空中發著微光，地上散落成堆的書",
-        "width": 1920,
-        "height": 1080,
-        "note": "HERO 圖片：本站自製向量插畫（示意用，非遊戲畫面）。"
+        "file": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4197610/273d2a3ddf5eab5d39b693a129b80609499e6b48/capsule_616x353.jpg",
+        "alt": "《Librarian: Tidy Up the Arcane Library!》Steam 官方封面：挑高的魔法圖書館，地上散落成堆的書",
+        "width": 616,
+        "height": 353,
+        "note": "封面圖片：Steam 商店官方素材，版權屬 ArtRising 所有。"
       },
       "facts": [
-        { "label": "開發／發行", "value": "ArtRising" },
-        { "label": "發行日期", "value": "2026 年 4 月 30 日" },
-        { "label": "售價", "value": "NT$136" },
-        { "label": "類型", "value": "第一人稱整理模擬、解謎、尋物" },
-        { "label": "評價", "value": "極度好評（14,131 篇評論中 93% 好評）" },
-        { "label": "中文", "value": "繁體中文介面、字幕與語音" }
+        {
+          "label": "開發／發行",
+          "value": "ArtRising"
+        },
+        {
+          "label": "發行日期",
+          "value": "2026 年 4 月 30 日"
+        },
+        {
+          "label": "售價",
+          "value": "NT$136"
+        },
+        {
+          "label": "類型",
+          "value": "第一人稱整理模擬、解謎、尋物"
+        },
+        {
+          "label": "評價",
+          "value": "極度好評（14,131 篇評論中 93% 好評）"
+        },
+        {
+          "label": "中文",
+          "value": "繁體中文介面、字幕與語音"
+        }
       ],
       "disclaimer": "本站為《Librarian: Tidy Up the Arcane Library!》非官方粉絲部落格。該遊戲由 ArtRising 開發與發行，相關名稱與圖像之權利均屬原權利人所有。"
+    },
+    {
+      "id": "firepit",
+      "name": "Fire Pit",
+      "emoji": "🔥",
+      "title": "Fire Pit 手記",
+      "tagline": "清空了，卻沒有整理好",
+      "description": "關於《Fire Pit: Throw Things Into The Fire》的中文筆記：一款把東西丟進火裡燒光的遊戲，以及它和整理遊戲之間那一點微妙的距離。",
+      "storeUrl": "https://store.steampowered.com/app/4300660/",
+      "accent": {
+        "light": "#c2552b",
+        "lightSoft": "#f4d6c4",
+        "dark": "#f08a5b",
+        "darkSoft": "#4f2c1e"
+      },
+      "hero": {
+        "file": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4300660/9784540da6b79561e93f6ae93d31c821f885d645/capsule_616x353.jpg",
+        "alt": "《Fire Pit》Steam 官方封面：兩個穿綠色連帽外套的人站在熊熊燃燒的石圈營火兩側，一人手持斧頭",
+        "width": 616,
+        "height": 353,
+        "note": "封面圖片：Steam 商店官方素材，版權屬 Manic Hyena 所有。"
+      },
+      "facts": [
+        {
+          "label": "開發／發行",
+          "value": "Manic Hyena"
+        },
+        {
+          "label": "發行日期",
+          "value": "2026 年 6 月 4 日"
+        },
+        {
+          "label": "售價",
+          "value": "NT$131"
+        },
+        {
+          "label": "類型",
+          "value": "第一人稱、休閒、模擬"
+        },
+        {
+          "label": "平台",
+          "value": "Windows"
+        },
+        {
+          "label": "遊玩人數",
+          "value": "單人／多人合作"
+        },
+        {
+          "label": "中文",
+          "value": "支援繁體中文"
+        }
+      ],
+      "disclaimer": "本站為《Fire Pit: Throw Things Into The Fire》非官方粉絲部落格。該遊戲由 Manic Hyena 開發與發行，相關名稱與圖像之權利均屬原權利人所有。"
     }
   ],
   "supabase": {

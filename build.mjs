@@ -261,6 +261,10 @@ async function loadPosts (cfg, gameById) {
 
 // ---------------------------------------------------------------- 版型
 
+/** 圖片路徑：站內檔案要依深度補 ../，外部網址（例如 Steam 的封面）原樣使用 */
+const isExternal = src => /^https?:\/\//i.test(src)
+const imgSrc = (src, base) => (isExternal(src) ? src : `${base}${src}`)
+
 /**
  * 每款遊戲一組主色，用 data-game 掛在 <html>（遊戲頁、文章頁）或卡片上（首頁）。
  * 直接內嵌進 <head>，省一次額外請求 —— 內容很短，不值得為它多開一個檔案。
@@ -285,7 +289,7 @@ function gameStyles (cfg) {
 function head (cfg, { title, description, canonical, depth, game, ogType }) {
   const base = depth ? '../' : ''
   const ogImage = cfg.baseUrl && game
-    ? `${cfg.baseUrl.replace(/\/$/, '')}/${game.hero.file}`
+    ? (isExternal(game.hero.file) ? game.hero.file : `${cfg.baseUrl.replace(/\/$/, '')}/${game.hero.file}`)
     : ''
 
   return `<meta charset="utf-8">
@@ -326,7 +330,7 @@ function heroBlock (game, depth) {
   const base = depth ? '../' : ''
   const h = game.hero
   return `<figure class="hero">
-    <img src="${base}${escAttr(h.file)}" alt="${escAttr(h.alt)}" width="${h.width || 1920}" height="${h.height || 1080}" fetchpriority="high" decoding="async">
+    <img src="${escAttr(imgSrc(h.file, base))}" alt="${escAttr(h.alt)}" width="${h.width || 1920}" height="${h.height || 1080}" fetchpriority="high" decoding="async">
   </figure>`
 }
 
